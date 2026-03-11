@@ -203,7 +203,7 @@ export default function SignIn() {
                       value: "Full-Time",
                       label: "Full-Time",
                     },
-                  ].map(({ value, label, desc }) => (
+                  ].map(({ value, label }) => (
                     <label
                       key={value}
                       className={`flex items-center gap-4 p-4 rounded-lg border cursor-pointer transition-all duration-200 ${
