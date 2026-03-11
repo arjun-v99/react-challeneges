@@ -1,15 +1,20 @@
 import { useState } from "react";
 
 export default function SignIn() {
-  const [radio, setRadio] = useState("option1");
+  const [radio, setRadio] = useState("Unemployed");
+  const [checkbox, setCheckbox] = useState("kosher");
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function signInUser(formData) {
-    console.log("Email : " + formData.get("email"));
-    console.log("Pwd: " + formData.get("password"));
-    console.log("Emplyment: " + formData.get("employmentStatus"));
+    const fData = Object.fromEntries(formData);
+    const dietRestrictions = formData.getAll("dietaryRestrictions");
+    const newData = {
+      ...fData,
+      dietaryRestrictions: dietRestrictions,
+    };
+    console.log(newData);
   }
 
   return (
@@ -241,6 +246,51 @@ export default function SignIn() {
                     </label>
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <h3>Dietary Restrictions</h3>
+                <div className="flex flex-col gap-3">
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="kosher"
+                      name="dietaryRestrictions"
+                    />
+
+                    <span className="">Kosher</span>
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="vegan"
+                      name="dietaryRestrictions"
+                    />
+
+                    <span>Vegan</span>
+                  </label>
+                  <label>
+                    <input
+                      type="checkbox"
+                      value="gluten free"
+                      name="dietaryRestrictions"
+                    />
+
+                    <span>Gluen Free</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="favColor">What is your favorite color</label>
+                <select name="favColor" id="favColor" defaultValue="">
+                  <option value="" disabled>
+                    -- Choose a color --
+                  </option>
+                  <option value="Red">Red</option>
+                  <option value="Blue">Blue</option>
+                  <option value="Green">Green</option>
+                </select>
               </div>
 
               {/* Remember me */}
